@@ -124,11 +124,13 @@ Remove-Item Env:ANTHROPIC_BASE_URL -ErrorAction SilentlyContinue
 
 ### 3.6 启动 Claude Code
 
-```bash
-claude
+```powershell
+claude --model mimo-v2.5-pro
 ```
 
 启动后即可正常对话。
+
+> 💡 如果用了 1M 上下文模型，改成 `claude --model mimo-v2.5-pro[1m]`。
 
 ---
 
@@ -206,7 +208,7 @@ Token Plan 支持多地区集群：
 3. 创建 ~/.claude/settings.json（填入 BASE_URL + API Key + MODEL）
 4. 创建 ~/.claude.json → {"hasCompletedOnboarding": true}
 5. 清除官方环境变量（如有）
-6. 终端输入 claude 启动
+6. 终端输入 claude --model mimo-v2.5-pro 启动
 ```
 
 ---
