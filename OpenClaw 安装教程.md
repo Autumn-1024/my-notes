@@ -45,11 +45,38 @@ npm --version
 
 ---
 
-## 二、安装 OpenClaw CLI
+## 二、安装 Git
 
-### 2.1 全局安装
+OpenClaw 的 npm 依赖需要 Git 来下载，所以必须先安装 Git。
 
-在终端中执行：
+### 2.1 使用 winget 安装（推荐）
+
+```powershell
+winget install Git.Git
+```
+
+### 2.2 方式二：手动下载安装
+
+1. 官网：https://git-scm.com/download/win
+2. 下载 64-bit Git for Windows Setup
+3. 双击安装，一路 Next 保持默认即可
+
+### 2.3 验证安装
+
+**⚠️ 安装 Git 后需要重新打开一个 PowerShell 窗口**，否则命令不会生效。
+
+```powershell
+git --version
+# 应该输出类似 git version 2.53.0
+```
+
+---
+
+## 三、安装 OpenClaw CLI
+
+### 3.1 全局安装
+
+确认 Git 已安装后，在终端中执行：
 
 ```powershell
 npm install -g openclaw
@@ -57,7 +84,7 @@ npm install -g openclaw
 
 > 💡 如果遇到权限问题，可以以管理员身份运行 PowerShell。
 
-### 2.2 验证安装
+### 3.2 验证安装
 
 ```powershell
 openclaw --version
@@ -68,11 +95,11 @@ openclaw --version
 
 ---
 
-## 三、初始化配置（交互式向导）
+## 四、初始化配置（交互式向导）
 
 OpenClaw 提供了交互式配置向导，推荐新手使用。
 
-### 3.1 运行配置向导
+### 4.1 运行配置向导
 
 ```powershell
 openclaw onboard
@@ -87,7 +114,7 @@ openclaw onboard
 5. **配置频道** — QQ、Discord、Telegram 等
 6. **安装技能** — 预装常用 skills
 
-### 3.2 一键配置（非交互式）
+### 4.2 一键配置（非交互式）
 
 如果你已经知道自己要什么，可以用命令行参数一步到位：
 
@@ -111,16 +138,16 @@ openclaw onboard --non-interactive --accept-risk --install-daemon --xiaomi-api-k
 
 ---
 
-## 四、手动配置（进阶）
+## 五、手动配置（进阶）
 
 如果你想手动编辑配置文件，或者需要更精细的控制。
 
-### 4.1 配置文件位置
+### 5.1 配置文件位置
 
 - **配置文件**：`~/.openclaw/openclaw.json`（即 `C:\Users\你的用户名\.openclaw\openclaw.json`）
 - **工作空间**：`~/.openclaw/workspace/`
 
-### 4.2 最小配置示例
+### 5.2 最小配置示例
 
 ```json5
 // ~/.openclaw/openclaw.json
@@ -143,7 +170,7 @@ openclaw onboard --non-interactive --accept-risk --install-daemon --xiaomi-api-k
 }
 ```
 
-### 4.3 使用 CLI 命令修改配置
+### 5.3 使用 CLI 命令修改配置
 
 ```powershell
 # 查看当前配置
@@ -159,7 +186,7 @@ openclaw config set agents.defaults.model.primary "xiaomi-coding/mimo-v2.5-pro"
 openclaw config unset plugins.entries.brave.config.webSearch.apiKey
 ```
 
-### 4.4 验证配置
+### 5.4 验证配置
 
 ```powershell
 openclaw doctor
@@ -175,35 +202,35 @@ openclaw doctor --fix
 
 ---
 
-## 五、启动 Gateway
+## 六、启动 Gateway
 
 Gateway 是 OpenClaw 的核心服务，负责处理消息、调用模型、管理会话。
 
-### 5.1 启动 Gateway
+### 6.1 启动 Gateway
 
 ```powershell
 openclaw gateway start
 ```
 
-### 5.2 查看 Gateway 状态
+### 6.2 查看 Gateway 状态
 
 ```powershell
 openclaw gateway status
 ```
 
-### 5.3 停止 Gateway
+### 6.3 停止 Gateway
 
 ```powershell
 openclaw gateway stop
 ```
 
-### 5.4 重启 Gateway
+### 6.4 重启 Gateway
 
 ```powershell
 openclaw gateway restart
 ```
 
-### 5.5 安装为系统服务（推荐）
+### 6.5 安装为系统服务（推荐）
 
 如果在 `onboard` 时没有加 `--install-daemon`，可以手动安装：
 
@@ -215,17 +242,17 @@ openclaw gateway install
 
 ---
 
-## 六、访问 Control UI
+## 七、访问 Control UI
 
 Gateway 启动后，可以通过浏览器访问 Control UI：
 
-### 6.1 打开 Control UI
+### 7.1 打开 Control UI
 
 默认地址：http://127.0.0.1:18789
 
 在浏览器中打开即可。
 
-### 6.2 Control UI 功能
+### 7.2 Control UI 功能
 
 - **Chat** — 和 AI 助手对话
 - **Config** — 可视化编辑配置
@@ -234,11 +261,11 @@ Gateway 启动后，可以通过浏览器访问 Control UI：
 
 ---
 
-## 七、配置频道（Channels）
+## 八、配置频道（Channels）
 
 OpenClaw 支持多种聊天频道，以下是常用频道的配置方法。
 
-### 7.1 QQ
+### 8.1 QQ
 
 需要先在 QQ 开放平台创建机器人，获取 AppID 和 Token。
 
@@ -255,7 +282,7 @@ OpenClaw 支持多种聊天频道，以下是常用频道的配置方法。
 }
 ```
 
-### 7.2 Discord
+### 8.2 Discord
 
 需要在 Discord Developer Portal 创建 Bot，获取 Token。
 
@@ -272,7 +299,7 @@ OpenClaw 支持多种聊天频道，以下是常用频道的配置方法。
 }
 ```
 
-### 7.3 Telegram
+### 8.3 Telegram
 
 需要在 @BotFather 创建 Bot，获取 Token。
 
@@ -289,7 +316,7 @@ OpenClaw 支持多种聊天频道，以下是常用频道的配置方法。
 }
 ```
 
-### 7.4 飞书
+### 8.4 飞书
 
 需要在飞书开放平台创建应用，获取 App ID 和 App Secret。
 
@@ -307,9 +334,9 @@ OpenClaw 支持多种聊天频道，以下是常用频道的配置方法。
 
 ---
 
-## 八、配置模型（Providers）
+## 九、配置模型（Providers）
 
-### 8.1 小米 MiMo
+### 9.1 小米 MiMo
 
 #### Token Plan（推荐）
 
@@ -342,7 +369,7 @@ OpenClaw 支持多种聊天频道，以下是常用频道的配置方法。
 > ⚠️ **重要**：MiMo 模型必须用 OpenAI 兼容协议（`/v1`），不能用 Anthropic 协议（`/anthropic`）。
 > 原因：MiMo 开了思考模式 + 多轮会话 + 工具调用时，需要回传 `reasoning_content`，Anthropic 协议不支持。
 
-### 8.2 OpenAI
+### 9.2 OpenAI
 
 ```json5
 {
@@ -355,7 +382,7 @@ OpenClaw 支持多种聊天频道，以下是常用频道的配置方法。
 }
 ```
 
-### 8.3 Anthropic
+### 9.3 Anthropic
 
 ```json5
 {
@@ -370,7 +397,7 @@ OpenClaw 支持多种聊天频道，以下是常用频道的配置方法。
 
 ---
 
-## 九、常用命令速查
+## 十、常用命令速查
 
 ```powershell
 # 版本信息
@@ -408,7 +435,7 @@ openclaw skills check            # 检查技能状态
 
 ---
 
-## 十、常见问题
+## 十一、常见问题
 
 ### Q: npm install 很慢？
 
@@ -452,15 +479,16 @@ openclaw config get agents.defaults.model.primary
 
 ---
 
-## 十一、完整流程速查
+## 十二、完整流程速查
 
 ```
 1. 安装 Node.js → node --version 验证
-2. npm install -g openclaw → openclaw --version 验证
-3. openclaw onboard → 交互式配置（选择模型、认证、频道等）
-4. openclaw gateway start → 启动 Gateway
-5. 浏览器打开 http://127.0.0.1:18789 → 访问 Control UI
-6. 开始对话！
+2. 安装 Git → git --version 验证（重新打开 PowerShell）
+3. npm install -g openclaw → openclaw --version 验证
+4. openclaw onboard → 交互式配置（选择模型、认证、频道等）
+5. openclaw gateway start → 启动 Gateway
+6. 浏览器打开 http://127.0.0.1:18789 → 访问 Control UI
+7. 开始对话！
 ```
 
 ---
